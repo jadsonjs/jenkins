@@ -28,6 +28,10 @@ buildNumber.properties
 ### Gradle template
 .gradle
 build/
+gradle-wrapper.jar
+gradle-wrapper.properties
+gradlew
+gradlew.bat
 
 # Ignore Gradle GUI config
 gradle-app.setting
