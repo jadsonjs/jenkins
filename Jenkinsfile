@@ -26,7 +26,7 @@ pipeline {
 
         stage('Code Quality') {
           steps {
-            sh 'echo'
+            sh 'gradle sonarqube -b pipeline-demo/build.gradle'
           }
         }
 
