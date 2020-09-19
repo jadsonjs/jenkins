@@ -1,10 +1,19 @@
 pipeline {
   agent any
   stages {
-    stage('Build') {
+    stage('Clean') {
       steps {
         withGradle() {
-          sh 'gradle -b build'
+          sh 'gradlew clean -b pipeline-demo/build.gradle'
+        }
+
+      }
+    }
+
+    stage('Bulild') {
+      steps {
+        withGradle() {
+          sh 'gradlew build -b pipeline-demo/build.gradle'
         }
 
       }
@@ -12,10 +21,7 @@ pipeline {
 
     stage('Test') {
       steps {
-        withGradle() {
-          sh 'gradle -b test'
-        }
-
+        sh 'gradlew test -b pipeline-demo/build.gradle'
       }
     }
 
