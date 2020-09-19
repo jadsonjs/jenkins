@@ -18,7 +18,7 @@ pipeline {
 
     stage('Test') {
       parallel {
-        stage('Test') {
+        stage('Unit Tests') {
           steps {
             sh 'gradle test -b pipeline-demo/build.gradle'
           }
