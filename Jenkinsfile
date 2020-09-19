@@ -17,8 +17,31 @@ pipeline {
     }
 
     stage('Test') {
+      parallel {
+        stage('Test') {
+          steps {
+            sh 'gradle test -b pipeline-demo/build.gradle'
+          }
+        }
+
+        stage('Code Quality') {
+          steps {
+            sh 'echo'
+          }
+        }
+
+      }
+    }
+
+    stage('Migration') {
       steps {
-        sh 'gradle test -b pipeline-demo/build.gradle'
+        sh 'echo'
+      }
+    }
+
+    stage('Deploy') {
+      steps {
+        sh 'echo'
       }
     }
 
