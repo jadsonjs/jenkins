@@ -4,7 +4,7 @@ pipeline {
     stage('Clean') {
       steps {
         withGradle() {
-          sh 'gradlew clean -b pipeline-demo/build.gradle'
+          sh 'gradle clean -b pipeline-demo/build.gradle'
         }
 
       }
@@ -13,7 +13,7 @@ pipeline {
     stage('Bulild') {
       steps {
         withGradle() {
-          sh 'gradlew build -b pipeline-demo/build.gradle'
+          sh 'gradle build -b pipeline-demo/build.gradle'
         }
 
       }
@@ -21,7 +21,7 @@ pipeline {
 
     stage('Test') {
       steps {
-        sh 'gradlew test -b pipeline-demo/build.gradle'
+        sh 'gradle test -b pipeline-demo/build.gradle'
       }
     }
 
