@@ -3,10 +3,7 @@ pipeline {
   stages {
     stage('Clean') {
       steps {
-        withGradle() {
-          sh 'gradle clean -b pipeline-demo/build.gradle'
-        }
-
+        sh 'gradle clean -b pipeline-demo/build.gradle'
       }
     }
 
