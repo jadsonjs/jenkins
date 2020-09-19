@@ -22,5 +22,11 @@ pipeline {
       }
     }
 
+    stage('My Step') {
+      steps {
+        build 'simple Job'
+      }
+    }
+
   }
 }
