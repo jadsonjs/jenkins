@@ -43,20 +43,22 @@ pipeline {
       }
     }
 
+    stage('Promotion') {
+      steps {
+        timeout(time: 1, unit: 'DAYS') {
+          input 'Deploy to Production?'
+        }
+
+      }
+    }
+
     stage('Migration') {
       steps {
         sh 'echo'
       }
     }
 
-    stage('Promotion') {
-      steps {
-        timeout(time: 1, unit: 'DAYS') {
-          echo 'Deploy do Production?'
-        }
-
-      }
-    }
+    
 
     stage('Deploy') {
       steps {
