@@ -28,8 +28,8 @@ dependencies {
 sonarqube {
 	properties {
 		property "sonar.sourceEncoding", "UTF-8"
-		property 'sonar.host.url', System.getProperty("sonar.url")
-		property "sonar.login", System.getProperty("sonar.token")
+		property 'sonar.host.url', System.getProperty("sonarUrl")
+		property "sonar.login", System.getProperty("sonarToken")
 	}
 }
 
