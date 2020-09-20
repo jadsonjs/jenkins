@@ -34,6 +34,12 @@ pipeline {
           }
         }
 
+        stage('Coverage') {
+          steps {
+            sh 'gradle jacocoTestReport -b pipeline-demo/build.gradle'
+          }
+        }
+
       }
     }
 
