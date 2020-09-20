@@ -49,6 +49,15 @@ pipeline {
       }
     }
 
+    stage('Promotion') {
+      steps {
+        timeout(time: 1, unit: 'DAYS') {
+          echo 'Deploy do Production?'
+        }
+
+      }
+    }
+
     stage('Deploy') {
       steps {
         sh 'echo'
