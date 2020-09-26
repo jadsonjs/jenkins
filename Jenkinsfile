@@ -53,12 +53,15 @@ pipeline {
     }
 
     stage('Migration') {
+      environment {
+        dataBaseUrl = 'localhost:32770'
+        dataBaseUser = 'postgres'
+        dataBasePassword = 'postgres'
+      }
       steps {
-        sh 'echo'
+        sh 'gradle flywayMigrate -b pipeline-demo/build.gradle'
       }
     }
-
-    
 
     stage('Deploy') {
       steps {
