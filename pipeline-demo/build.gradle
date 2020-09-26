@@ -73,13 +73,17 @@ jacocoTestReport {
 }
 
 
+def dataBaseUrl = System.getProperty("dataBaseUrl")
+def dataBaseUser = System.getProperty("dataBaseUser")
+def dataBasePassword = System.getProperty("dataBasePassword")
+
 // database migration plugin.
 
 flyway {
 	driver   = "org.postgresql.Driver"
-	url      = 'jdbc:postgresql://'+System.getProperty("dataBaseUrl")+'';
-	user = System.getProperty("dataBaseUser")
-	password = System.getProperty("dataBasePassword")
+	url      = 'jdbc:postgresql://'+dataBaseUrl+'/';
+	user = dataBaseUser
+	password = dataBasePassword
 	// The default schema managed by Flyway.
 	schemas  = ['public']
 	createSchemas = false
