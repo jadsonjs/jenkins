@@ -25,8 +25,12 @@ pipeline {
         }
 
         stage('Code Quality') {
+          environment {
+            sonarUrl = 'http://localhost:9000'
+            sonarToken = '0c0b3b61dddfd26b0b88d90aef908318951538fd'
+          }
           steps {
-            sh 'gradle sonarqube -b pipeline-demo/build.gradle -PsonarUrl=http://localhost:9000 -PsonarToken=0c0b3b61dddfd26b0b88d90aef908318951538fd'
+            sh 'gradle sonarqube -b pipeline-demo/build.gradle -DsonarUrl=${sonarUrl} -DsonarToken=${sonarToken}'
           }
         }
 
