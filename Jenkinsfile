@@ -53,13 +53,9 @@ pipeline {
     }
 
     stage('Migration') {
-      environment {
-        dataBaseUrl = 'localhost:32770'
-        dataBaseUser = 'postgres'
-        dataBasePassword = 'postgres'
-      }
       steps {
-        sh 'gradle flywayMigrate -b pipeline-demo/build.gradle'
+        sh '''gradle flywayMigrate -b pipeline-demo/build.gradle -Pflyway.url=jdbc:postgresql://localhost:32770/ -Pflyway.user=postgres -Pflyway.password=postgres
+'''
       }
     }
 
