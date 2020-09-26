@@ -59,8 +59,8 @@ test {
 sonarqube {
 	properties {
 		property "sonar.sourceEncoding", "UTF-8"
-		property 'sonar.host.url', project.property('sonarUrl')
-		property "sonar.login", project.property('sonarToken')
+		property 'sonar.host.url', System.getProperty('sonarUrl')
+		property "sonar.login", System.getProperty('sonarToken')
 	}
 }
 
