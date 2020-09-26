@@ -72,26 +72,26 @@ jacocoTestReport {
 	}
 }
 
-
-def dataBaseUrl = System.getProperty("dataBaseUrl")
-def dataBaseUser = System.getProperty("dataBaseUser")
-def dataBasePassword = System.getProperty("dataBasePassword")
-
 // database migration plugin.
 
 flyway {
-	driver   = "org.postgresql.Driver"
-	url      = 'jdbc:postgresql://'+dataBaseUrl+'/';
-	user = dataBaseUser
-	password = dataBasePassword
+
+	driver = "org.postgresql.Driver"
+	url = 'jdbc:postgresql://localhost:5432/';
+	user = ''
+	password = ''
 	// The default schema managed by Flyway.
-	schemas  = ['public']
+	schemas = ['public']
 	createSchemas = false
 	// where the migration scripts will be save.
-	locations = ['filesystem:/$projectDir/src/main/resources/db/migration']
+	locations = ["filesystem:/$projectDir/src/main/resources/db/migration"]
 	// the name of table to save migration data
 	table = "flyway_schema_history"
 	encoding = 'UTF-8'
 	baselineOnMigrate = true
+
 }
+
+
+
 
