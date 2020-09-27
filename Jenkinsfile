@@ -60,7 +60,7 @@ pipeline {
 
     stage('Deploy') {
       steps {
-        sh 'echo'
+        sh 'gradle deployHeroku -b pipeline-demo/build.gradle'
       }
     }
 
