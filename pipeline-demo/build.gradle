@@ -25,11 +25,13 @@ plugins {
 	id 'org.springframework.boot' version '2.3.3.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
 	id 'java'
-	id "org.sonarqube" version "3.0"           // code quality
-	id "jacoco"                                // CI metrics
-	id "org.flywaydb.flyway" version "6.5.7"   // database migration
-	id 'org.hidetake.ssh' version 'x.y.z'      // deploy application
+	id "org.sonarqube" version "3.0"                   // code quality
+	id "jacoco"                                        // CI metrics
+	id "org.flywaydb.flyway" version "6.5.7"           // database migration
+	id 'org.hidetake.ssh' version '2.10.1'             // deploy application by ssh
+	id "com.heroku.sdk.heroku-gradle" version "2.0.0"  // deploy application on heroku
 }
+
 
 group = 'br.com.jadson'
 description = 'Example of project where use Continuous Delivery'
@@ -78,14 +80,14 @@ jacocoTestReport {
 flyway {
 
 	driver = "org.postgresql.Driver"
-	url = 'jdbc:postgresql://localhost:5432/';
+	url = 'jdbc:postgresql://localhost:5432/'
 	user = ''
 	password = ''
 	// The default schema managed by Flyway.
 	schemas = ['public']
 	createSchemas = false
 	// where the migration scripts will be save.
-	locations = ["filesystem:src/main/resources/db/migration"]
+	locations = ["filesystem:/src/main/resources/db/migration"]
 	// the name of table to save migration data
 	table = "flyway_schema_history"
 	encoding = 'UTF-8'
@@ -93,18 +95,18 @@ flyway {
 
 }
 
-
+/// deploy task
 task deploySSH {
 
 	doLast {
 
 		def deployServer       =  System.getProperty("deployServer")
-		def deployDirectory    =  System.getProperty("deployDirectory");
-		def deployPort         =  System.getProperty("deployPort") ;
-		def deployUser         =  System.getProperty("deployUser");
-		def deployPKFilePath   =  System.getProperty("deployPKFilePath");
-		def restartTomcat      =  System.getProperty("restartTomcat");
-		def restartSpringBoot  =  System.getProperty("restartTomcat");
+		def deployDirectory    =  System.getProperty("deployDirectory")
+		def deployPort         =  System.getProperty("deployPort")
+		def deployUser         =  System.getProperty("deployUser")
+		def deployPKFilePath   =  System.getProperty("deployPKFilePath")
+		def restartTomcat      =  System.getProperty("restartTomcat")
+		def restartSpringBoot  =  System.getProperty("restartTomcat")
 
 		ssh.remotes {
 			webServer {
@@ -120,7 +122,7 @@ task deploySSH {
 		ssh.run {
 			session(ssh.remotes.webServer) {
 
-				println " ..... fazendo deploy de \""+"$rootProject.name"+".jar\" em: "+deployUser+"@"+deployServer+":"+deployDirectory+" -P "+deployPort;
+				println " ..... fazendo deploy de \""+"$rootProject.name"+".jar\" em: "+deployUser+"@"+deployServer+":"+deployDirectory+" -P "+deployPort
 
 				put from: "$buildDir/libs/*.jar", into: deployDirectory+'/'+"$rootProject.name"+'.jar'
 
@@ -136,6 +138,18 @@ task deploySSH {
 			}
 		}
 	}
+}
+
+
+
+heroku {
+	appName = "jadson-pipe-line-demo"
+	includes = ["build/libs/pipeline-demo-0.0.1-SNAPSHOT.jar"]
+	includeBuildDir = false
+	jdkVersion = 11
+	processTypes(
+		web: "java -jar build/libs/pipeline-demo-0.0.1-SNAPSHOT.jar"
+	)
 }
 
 
