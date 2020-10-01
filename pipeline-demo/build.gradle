@@ -87,7 +87,7 @@ flyway {
 	schemas = ['public']
 	createSchemas = false
 	// where the migration scripts will be save.
-	locations = ["filesystem:/src/main/resources/db/migration"]
+	locations = ["filesystem:/$projectDir/src/main/resources/db/migration"]
 	// the name of table to save migration data
 	table = "flyway_schema_history"
 	encoding = 'UTF-8'
