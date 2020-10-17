@@ -26,14 +26,14 @@
  */
 package br.com.jadson.pipelinedemo.controllers;
 
-import br.com.jadson.pipelinedemo.services.CalculatorService;
+import br.com.jadson.pipelinedemo.domain.ports.CalculatorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * Example of one Controller
+ * Example of simple REST Controller
  *
  * Jadson Santos - jadsonjs@gmail.com
  */

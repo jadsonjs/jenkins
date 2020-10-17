@@ -24,7 +24,7 @@
  * CalculatorService
  * 29/08/20
  */
-package br.com.jadson.pipelinedemo.services;
+package br.com.jadson.pipelinedemo.domain.ports;
 
 /**
  * Service Declaration

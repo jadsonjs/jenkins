@@ -24,10 +24,10 @@
  * CalculateServiceImpl
  * 29/08/20
  */
-package br.com.jadson.pipelinedemo.domain.ports;
+package br.com.jadson.pipelinedemo.services;
 
 import br.com.jadson.pipelinedemo.domain.model.Calculator;
-import br.com.jadson.pipelinedemo.services.CalculatorService;
+import br.com.jadson.pipelinedemo.domain.ports.CalculatorService;
 
 /**
  * Service Implementation
